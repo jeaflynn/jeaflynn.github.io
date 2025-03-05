@@ -68,6 +68,21 @@ nav a:hover {
     color: #0366d6;
 }
 
+nav a.active {
+    color: #0366d6;
+    position: relative;
+}
+
+nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0366d6;
+}
+
 .section {
     padding: 80px 0;
 }
