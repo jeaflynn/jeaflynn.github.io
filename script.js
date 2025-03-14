@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Gallery functionality
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.gallery-track');
     const slides = document.querySelectorAll('.gallery-slide');
@@ -54,15 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButton = document.querySelector('.next-button');
     
     if (!track || !slides.length || !prevButton || !nextButton) {
-        return; // Exit if elements don't exist
+        return;
     }
     
     let currentIndex = 0;
     
-    // Position slides initially
     positionSlides();
     
-    // Set up event listeners for buttons
     prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         positionSlides();
@@ -73,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         positionSlides();
     });
     
-    // Function to position slides
     function positionSlides() {
         slides.forEach((slide, index) => {
             const offset = index - currentIndex;
