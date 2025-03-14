@@ -104,70 +104,91 @@ nav a.active::after {
     margin: 15px auto 0;
 }
 
-.slideshow-container {
+.gallery-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
+    max-width: 600px;
 }
 
-.slideshow {
+.gallery {
     position: relative;
-    width: 800px;
-    height: 600px;
-    overflow: hidden;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    align-items: center;
     border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.slide {
+.gallery-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-slide {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.slide.active {
-    opacity: 1;
-}
-
-.slide img {
+.gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.dots-container {
+.gallery-button {
     position: absolute;
-    bottom: 15px;
-    left: 0;
-    right: 0;
-    text-align: center;
-}
-
-.dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 5px;
-    background-color: #bbb;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.dot.active, .dot:hover {
-    background-color: white;
+.gallery-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
+.prev-button {
+    left: 10px;
 }
 
-@keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
+.next-button {
+    right: 10px;
+}
+
+/* For VS Code theme */
+.gallery {
+    border: 1px solid #3a3d41;
+    background-color: #252526;
+}
+
+.gallery-button {
+    background-color: #2d2d30;
+    color: #d4d4d4;
+}
+
+.gallery-button:hover {
+    background-color: #3e3e42;
+    color: #ffffff;
 }
 
 .about-content {
