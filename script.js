@@ -46,38 +46,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-
-function showSlides() {
-    // Hide all slides
-    slides.forEach(slide => {
-        slide.classList.remove('active');
-    });
+// Gallery functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.gallery-track');
+    const slides = document.querySelectorAll('.gallery-slide');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
     
-    dots.forEach(dot => {
-        dot.classList.remove('active');
-    });
-    
-    slideIndex++;
-    
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
+    if (!track || !slides.length || !prevButton || !nextButton) {
+        return; // Exit if elements don't exist
     }
     
-    slides[slideIndex - 1].classList.add('active');
-    dots[slideIndex - 1].classList.add('active');
+    let currentIndex = 0;
     
-    // Change slide every 4 seconds
-    setTimeout(showSlides, 4000);
-}
-
-function currentSlide(n) {
-    slideIndex = n - 1;
-    showSlides();
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    showSlides();
+    // Position slides initially
+    positionSlides();
+    
+    // Set up event listeners for buttons
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        positionSlides();
+    });
+    
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        positionSlides();
+    });
+    
+    // Function to position slides
+    function positionSlides() {
+        slides.forEach((slide, index) => {
+            const offset = index - currentIndex;
+            slide.style.transform = `translateX(${offset * 100}%)`;
+            slide.style.zIndex = offset === 0 ? '1' : '0';
+        });
+    }
 });
