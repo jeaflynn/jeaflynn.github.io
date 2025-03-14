@@ -177,6 +177,7 @@ nav a.active::after {
     flex-wrap: wrap;
     gap: 40px;
     max-width: 1000px;
+    width: 100%;
 }
 
 .about-text {
