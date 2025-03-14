@@ -58,23 +58,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentIndex = 0;
     
-    positionSlides();
+    function updateSlideClasses() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev', 'next');
+            
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
+                slide.classList.add('prev');
+            } else if (index === (currentIndex + 1) % slides.length) {
+                slide.classList.add('next');
+            }
+        });
+    }
+
+    updateSlideClasses();
     
     prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        positionSlides();
+        pupdateSlideClasses();
     });
     
     nextButton.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % slides.length;
-        positionSlides();
+        updateSlideClasses();
     });
-    
-    function positionSlides() {
-        slides.forEach((slide, index) => {
-            const offset = index - currentIndex;
-            slide.style.transform = `translateX(${offset * 100}%)`;
-            slide.style.zIndex = offset === 0 ? '1' : '0';
-        });
-    }
 });
