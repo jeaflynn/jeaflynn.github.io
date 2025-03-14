@@ -45,3 +45,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlides() {
+    // Hide all slides
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+    
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    slideIndex++;
+    
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    
+    slides[slideIndex - 1].classList.add('active');
+    dots[slideIndex - 1].classList.add('active');
+    
+    // Change slide every 4 seconds
+    setTimeout(showSlides, 4000);
+}
+
+function currentSlide(n) {
+    slideIndex = n - 1;
+    showSlides();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    showSlides();
+});
