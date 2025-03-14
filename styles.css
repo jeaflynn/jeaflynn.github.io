@@ -119,20 +119,22 @@ nav a.active::after {
     display: flex;
     align-items: center;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+    box-shadow: none;
 }
 
 .gallery-track {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    overflow: visible;
 }
 
 .gallery-slide {
     position: absolute;
-    width: 100%;
+    width: 70%;
     height: 100%;
     transition: transform 0.5s ease;
     display: flex;
@@ -143,10 +145,32 @@ nav a.active::after {
 .gallery-slide img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     background-color: #252526;
 }
 
+.gallery-slide {
+    opacity: 0.4;
+    transform: scale(0.8);
+    z-index: 1;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    z-index: 2;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-slide.prev {
+    transform: translateX(-60%) scale(0.8);
+    z-index: 1;
+}
+
+.gallery-slide.next {
+    transform: translateX(60%) scale(0.8);
+    z-index: 1;
+}
 .gallery-button {
     position: absolute;
     top: 50%;
@@ -170,11 +194,11 @@ nav a.active::after {
 }
 
 .prev-button {
-    left: 10px;
+    left: 15%;
 }
 
 .next-button {
-    right: 10px;
+    right: 15%;
 }
 
 /* For VS Code theme */
