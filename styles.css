@@ -104,7 +104,7 @@ nav a.active::after {
     margin: 15px auto 0;
 }
 
-/* Carousel-style gallery that fills entire width */
+/* True carousel style gallery */
 .gallery-container {
     display: flex;
     justify-content: center;
@@ -120,47 +120,37 @@ nav a.active::after {
     height: 450px;
     display: flex;
     align-items: center;
-    overflow: hidden; /* Hide overflow from container */
+    overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-track {
-    position: relative;
-    width: 100%;
+    position: absolute;
+    display: flex;
+    width: calc(100% * 3); /* Width for 3 visible slides */
+    transition: transform 0.5s ease;
     height: 100%;
 }
 
 .gallery-slide {
-    position: absolute;
-    width: 100%;
+    width: calc(100% / 3); /* Each slide takes 1/3 of track width */
+    min-width: calc(100% / 3);
     height: 100%;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-}
-
-.gallery-slide.active {
-    z-index: 3;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.gallery-slide.prev {
-    z-index: 2;
-    opacity: 0.4;
-    transform: translateX(-30%);
-}
-
-.gallery-slide.next {
-    z-index: 2;
-    opacity: 0.4;
-    transform: translateX(30%);
+    position: relative;
 }
 
 .gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Style for non-active slides */
+.gallery-slide:not(.active) img {
+    opacity: 0.4;
+    transform: scale(0.9);
 }
 
 .gallery-button {
@@ -191,22 +181,6 @@ nav a.active::after {
 
 .next-button {
     right: 20px;
-}
-
-/* For VS Code theme */
-.gallery {
-    border: 1px solid #3a3d41;
-    background-color: #252526;
-}
-
-.gallery-button {
-    background-color: #2d2d30;
-    color: #d4d4d4;
-}
-
-.gallery-button:hover {
-    background-color: #3e3e42;
-    color: #ffffff;
 }
 
 .about-content {

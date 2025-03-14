@@ -59,22 +59,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     const totalSlides = slides.length;
     
-    function updateSlides() {
-        const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        const nextIndex = (currentIndex + 1) % totalSlides;
-        
-        console.log(`Current: ${currentIndex}, Prev: ${prevIndex}, Next: ${nextIndex}`);
-
+    function setupCarousel() {
         slides.forEach(slide => {
-            slide.classList.remove('active', 'prev', 'next');
+            const clone = slide.cloneNode(true);
+            track.appendChild(clone);
         });
-
-        slides[currentIndex].classList.add('active');
-        slides[prevIndex].classList.add('prev');
-        slides[nextIndex].classList.add('next');
+        updateActiveSlide();
     }
 
-    updateSlides();
+    function updateActiveSlide() {
+        const allSlides = track.querySelectorAll('.gallery-slide');
+        allSlides.forEach(slide => slide.classList.remove('active'));
+        
+        const centerIndex = currentIndex + totalSlides;
+        allSlides[centerIndex].classList.add('active');
+        
+        track.style.transform = `translateX(calc(-${currentIndex * (100 / 3)}%))`;
+    }
+    
+    setupCarousel();
     
     prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + slides.length) % totalSlides;;
