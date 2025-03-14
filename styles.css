@@ -181,6 +181,8 @@ nav a.active::after {
 
 .about-text {
     max-width: 1000px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .about-text p {
