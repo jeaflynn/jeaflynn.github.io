@@ -110,10 +110,11 @@ nav a.active::after {
     align-items: center;
     flex-wrap: wrap;
     gap: 40px;
+    max-width: 1000px;
 }
 
 .about-text {
-    max-width: 1000px;
+    max-width: 100%;
 }
 
 .about-text p {
