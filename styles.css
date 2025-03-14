@@ -112,8 +112,8 @@ nav a.active::after {
 
 .slideshow {
     position: relative;
-    width: 600px;
-    height: 400px;
+    width: 800px;
+    height: 600px;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -177,15 +177,6 @@ nav a.active::after {
     flex-wrap: wrap;
     gap: 40px;
     max-width: 1000px;
-}
-
-.about-summary {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #0366d6;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-    border-bottom: 2px dashed #d1d5da;
 }
 
 .about-text {
