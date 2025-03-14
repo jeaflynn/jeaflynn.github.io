@@ -113,6 +113,15 @@ nav a.active::after {
     max-width: 1000px;
 }
 
+.about-summary {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #0366d6;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed #d1d5da;
+}
+
 .about-text {
     max-width: 100%;
 }
