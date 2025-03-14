@@ -57,30 +57,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     let currentIndex = 0;
+    const totalSlides = slides.length;
     
-    function updateSlideClasses() {
-        slides.forEach((slide, index) => {
+    function updateSlides() {
+        const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        const nextIndex = (currentIndex + 1) % totalSlides;
+        
+        console.log(`Current: ${currentIndex}, Prev: ${prevIndex}, Next: ${nextIndex}`);
+
+        slides.forEach(slide => {
             slide.classList.remove('active', 'prev', 'next');
-            
-            if (index === currentIndex) {
-                slide.classList.add('active');
-            } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
-                slide.classList.add('prev');
-            } else if (index === (currentIndex + 1) % slides.length) {
-                slide.classList.add('next');
-            }
         });
+
+        slides[currentIndex].classList.add('active');
+        slides[prevIndex].classList.add('prev');
+        slides[nextIndex].classList.add('next');
     }
 
-    updateSlideClasses();
+    updateSlides();
     
     prevButton.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        pupdateSlideClasses();
+        currentIndex = (currentIndex - 1 + slides.length) % totalSlides;;
+        updateSlides();
     });
     
     nextButton.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlideClasses();
+        currentIndex = (currentIndex + 1) % totalSlides;;
+        updateSlides();
     });
 });

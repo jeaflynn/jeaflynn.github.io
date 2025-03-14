@@ -104,73 +104,65 @@ nav a.active::after {
     margin: 15px auto 0;
 }
 
+/* Carousel-style gallery that fills entire width */
 .gallery-container {
     display: flex;
     justify-content: center;
-    margin: 0 auto 40px;
+    margin: 40px auto;
     max-width: 900px;
     width: 100%;
+    padding: 0;
 }
 
 .gallery {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
+    overflow: hidden; /* Hide overflow from container */
     border-radius: 8px;
-    overflow: visible;
-    box-shadow: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-track {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: visible;
 }
 
 .gallery-slide {
     position: absolute;
-    width: 70%;
+    width: 100%;
     height: 100%;
-    transition: transform 0.5s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.gallery-slide.active {
+    z-index: 3;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.gallery-slide.prev {
+    z-index: 2;
+    opacity: 0.4;
+    transform: translateX(-30%);
+}
+
+.gallery-slide.next {
+    z-index: 2;
+    opacity: 0.4;
+    transform: translateX(30%);
 }
 
 .gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background-color: #252526;
 }
 
-.gallery-slide {
-    opacity: 0.4;
-    transform: scale(0.8);
-    z-index: 1;
-}
-
-.gallery-slide.active {
-    opacity: 1;
-    transform: scale(1) translateX(0);
-    z-index: 2;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.gallery-slide.prev {
-    transform: translateX(-60%) scale(0.8);
-    z-index: 1;
-}
-
-.gallery-slide.next {
-    transform: translateX(60%) scale(0.8);
-    z-index: 1;
-}
 .gallery-button {
     position: absolute;
     top: 50%;
@@ -194,11 +186,11 @@ nav a.active::after {
 }
 
 .prev-button {
-    left: 15%;
+    left: 20px;
 }
 
 .next-button {
-    right: 15%;
+    right: 20px;
 }
 
 /* For VS Code theme */
