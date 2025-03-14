@@ -109,6 +109,7 @@ nav a.active::after {
     justify-content: center;
     margin: 0 auto 40px;
     max-width: 900px;
+    width: 100%;
 }
 
 .gallery {
