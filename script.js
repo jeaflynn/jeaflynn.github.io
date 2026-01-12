@@ -46,35 +46,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const track = document.querySelector('.gallery-track');
-    const slides = document.querySelectorAll('.gallery-slide');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
+// Image Gallery
+let currentIndex = 0;
+const images = ['images/img1.jpg', 'images/img2.jpg', 'images/img3.jpg', 'images/img4.jpg'];
+
+function changeSlide(n) {
+    currentIndex += n;
+    if (currentIndex >= images.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = images.length - 1;
+    showSlide();
+}
+
+function currentSlide(n) {
+    currentIndex = n;
+    showSlide();
+}
+
+function showSlide() {
+    document.getElementById('gallery-img').src = images[currentIndex];
     
-    if (!track || !slides.length || !prevButton || !nextButton) {
-        return;
-    }
-    
-    let currentIndex = 0;
-    
-    positionSlides();
-    
-    prevButton.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        positionSlides();
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
     });
-    
-    nextButton.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        positionSlides();
-    });
-    
-    function positionSlides() {
-        slides.forEach((slide, index) => {
-            const offset = index - currentIndex;
-            slide.style.transform = `translateX(${offset * 100}%)`;
-            slide.style.zIndex = offset === 0 ? '1' : '0';
+}
+
+// Initialize gallery
+if (document.getElementById('gallery-img')) {
+    showSlide();
+}
+
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+            top: targetElement.offsetTop - 60,
+            behavior: 'smooth'
         });
-    }
+    });
 });

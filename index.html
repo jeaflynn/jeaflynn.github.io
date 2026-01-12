@@ -11,7 +11,7 @@
     <header>
         <div class="container">
             <h1>Jesse Flynn</h1>
-            <p>Veteran and Computer Science Student at Texas State University | University Ambassador | 4.00 GPA | Software Development and AI Enthusiast</p>
+            <p>Veteran and Computer Science Student at Texas State University | Presidential Ambassador | 4.00 GPA | Software Development and AI Enthusiast</p>
         </div>
     </header>
 
@@ -26,32 +26,23 @@
         </div>
     </nav>
 
-    <div class="gallery-container">
-        <div class="gallery">
-            <button class="gallery-button prev-button">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <div class="gallery-track">
-                <div class="gallery-slide">
-                    <img src="images/img1.jpg" alt="Jesse Flynn">
-                </div>
-                <div class="gallery-slide">
-                    <img src="images/img2.jpg" alt="Jesse Flynn">
-                </div>
-                <div class="gallery-slide">
-                    <img src="images/img3.jpg" alt="Jesse Flynn">
-                </div>
-                <div class="gallery-slide">
-                    <img src="images/img4.jpg" alt="Jesse Flynn">
-                </div>
-            </div>
-            
-            <button class="gallery-button next-button">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
+    <div class="image-gallery">
+    <div class="gallery-container-simple">
+        <button class="gallery-btn prev" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="gallery-img" src="images/img1.jpg" alt="Jesse Flynn">
+        <button class="gallery-btn next" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
+    <div class="gallery-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</div>
 
     <section id="about" class="section">
         <div class="container">
